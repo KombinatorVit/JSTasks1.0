@@ -1,35 +1,24 @@
-// Проверка на пустоту
-// Напишите функцию isEmpty(obj), которая возвращает true, если у объекта нет свойств, иначе false.
+// У нас есть объект, в котором хранятся зарплаты нашей команды:
 //
-//     Должно работать так:
+//     let salaries = {
+//          John: 100,
+//          Ann: 160,
+//          Pete: 130
+//     }
+// Напишите код для суммирования всех зарплат и сохраните результат в переменной sum. Должно получиться 390.
 //
-//     let schedule = {};
-//
-// alert( isEmpty(schedule) ); // true
-//
-// schedule["8:30"] = "get up";
-//
-// alert( isEmpty(schedule) ); // false
+// Если объект salaries пуст, то результат должен быть 0.
 
-function isEmpty(obj){
-     for(let key in obj){
-          if(key === undefined){
-               return true
-          }
-     return console.log(' Yes')
-     }
+let salaries = {
+         John: 100,
+         Ann: 160,
+         Pete: 130
+    }
+    let sum = 0;
 
+for( let key in salaries){
+
+     sum+=salaries[key]
 }
 
-
-isEmpty({a:'s'})
-
-//Просто в цикле перебираем свойства объекта и возвращаем false, как только встречаем свойство.
-//
-// function isEmpty(obj) {
-//   for (let key in obj) {
-//     // если тело цикла начнет выполняться - значит в объекте есть свойства
-//     return false;
-//   }
-//   return true;
-// }
+console.log(sum)
