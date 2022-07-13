@@ -1,43 +1,35 @@
-// Умножаем все числовые свойства на 2
-// важность: 3
-// Создайте функцию multiplyNumeric(obj), которая умножает все числовые свойства объекта obj на 2.
-//
-// Например:
-//
-// // до вызова функции
-//     let menu = {
-//          width: 200,
-//          height: 300,
-//          title: "My menu"
-//     };
-//
-// multiplyNumeric(menu);
-//
-// // после вызова функции
-// menu = {
-//      width: 400,
-//      height: 600,
-//      title: "My menu"
-// };
-// Обратите внимание, что multiplyNumeric не нужно ничего возвращать. Следует напрямую изменять объект.
-//
-//     P.S. Используйте typeof для проверки, что значение свойства числовое.
+let user = {
+     name: "Иван",
+     age: 30
+};
 
-    let menu = {
-         width: 200,
-         height: 300,
-         title: "My menu"
-    };
+let clone = {}; // новый пустой объект
 
-function multiplyNumeric(obj){
-     for(let key in obj){
-     if(typeof obj[key] == 'number'){ obj[key] *=2}
-     console.log(obj)
-}
+// скопируем все свойства user в него
+for (let key in user) {
+     clone[key] = user[key];
 }
 
-multiplyNumeric(menu)
+// теперь в переменной clone находится абсолютно независимый клон объекта
+clone.name = "Пётр"; // изменим в нём данные
+
+alert( user.name ); // в оригинальном объекте значение свойства `name` осталось прежним – Иван.
+/////\\
 
 
-console.log((menu))
+let user = { name: "Иван" };
 
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+// копируем все свойства из permissions1 и permissions2 в user
+Object.assign(user, permissions1, permissions2);
+
+// теперь user = { name: "Иван", canView: true, canEdit: true }
+// \\\\\
+let user = {
+     name: "Иван",
+     age: 30
+};
+
+let clone = Object.assign({}, user);
