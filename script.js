@@ -1,24 +1,43 @@
-// У нас есть объект, в котором хранятся зарплаты нашей команды:
+// Умножаем все числовые свойства на 2
+// важность: 3
+// Создайте функцию multiplyNumeric(obj), которая умножает все числовые свойства объекта obj на 2.
 //
-//     let salaries = {
-//          John: 100,
-//          Ann: 160,
-//          Pete: 130
-//     }
-// Напишите код для суммирования всех зарплат и сохраните результат в переменной sum. Должно получиться 390.
+// Например:
 //
-// Если объект salaries пуст, то результат должен быть 0.
+// // до вызова функции
+//     let menu = {
+//          width: 200,
+//          height: 300,
+//          title: "My menu"
+//     };
+//
+// multiplyNumeric(menu);
+//
+// // после вызова функции
+// menu = {
+//      width: 400,
+//      height: 600,
+//      title: "My menu"
+// };
+// Обратите внимание, что multiplyNumeric не нужно ничего возвращать. Следует напрямую изменять объект.
+//
+//     P.S. Используйте typeof для проверки, что значение свойства числовое.
 
-let salaries = {
-         John: 100,
-         Ann: 160,
-         Pete: 130
-    }
-    let sum = 0;
+    let menu = {
+         width: 200,
+         height: 300,
+         title: "My menu"
+    };
 
-for( let key in salaries){
-
-     sum+=salaries[key]
+function multiplyNumeric(obj){
+     for(let key in obj){
+     if(typeof obj[key] == 'number'){ obj[key] *=2}
+     console.log(obj)
+}
 }
 
-console.log(sum)
+multiplyNumeric(menu)
+
+
+console.log((menu))
+
