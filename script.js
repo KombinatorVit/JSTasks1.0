@@ -1,25 +1,16 @@
 
 
-
-        function Calculator(){
+                function Accumulator(startingValue){
+this.value = startingValue;
 this.read = function (){
-        this.a = +prompt('a?','0')
-        this.b = +prompt('b?','0')
-
+    this.a+=prompt('a?')
+    this.value+=this.a
 }
-this.sum = function (){
-        return this.a + this.b
-}
+                }
 
+                let accumulator = new Accumulator(1); // начальное значение 1
 
-this.mul = function(){
-        return this.a * this.b
-}
+                accumulator.read(); // прибавит ввод prompt к текущему значению
+                accumulator.read(); // прибавит ввод prompt к текущему значению
 
-        }
-
-        let calculator = new Calculator();
-        calculator.read();
-
-        alert( "Sum=" + calculator.sum() );
-        alert( "Mul=" + calculator.mul() );
+                alert(accumulator.value); // выведет сумму этих значений
