@@ -1,13 +1,24 @@
-// Сортировать в порядке по убыванию
-// важность: 4
-// let arr = [5, 2, 1, -10, 8];
+// Скопировать и отсортировать массив
+// У нас есть массив строк arr. Нужно получить отсортированную копию, но оставить arr неизменённым.
 //
-// // ... ваш код для сортировки по убыванию
+//     Создайте функцию copySorted(arr), которая будет возвращать такую копию.
 //
-// alert( arr ); // 8, 5, 2, 1, -10
+//     let arr = ["HTML", "JavaScript", "CSS"];
+//
+// let sorted = copySorted(arr);
+//
+// alert( sorted ); // CSS, HTML, JavaScript
+// alert( arr ); // HTML, JavaScript, CSS (без изменений)
 
-let arr = [5, 2, 1, -10, 8];
+// Для копирования массива используем slice() и тут же – сортировку:
 
-arr.sort((a, b) => b - a);
+    function copySorted(arr) {
+        return arr.slice().sort();
+    }
 
+let arr = ["HTML", "JavaScript", "CSS"];
+
+let sorted = copySorted(arr);
+
+alert( sorted );
 alert( arr );
