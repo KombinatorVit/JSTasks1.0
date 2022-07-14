@@ -1,18 +1,25 @@
-// Возможно ли создать функции A и B в примере ниже, где объекты равны new A()==new B()?
-//
-//     function A() { ... }
-//     function B() { ... }
-//
-// let a = new A;
-// let b = new B;
-//
-// alert( a == b ); // true
-// Если да – приведите пример вашего кода.
 
 
 
-let obj = {}
-function A(){return obj}
-function B(){return obj}
+        function Calculator(){
+this.read = function (){
+        this.a = +prompt('a?','0')
+        this.b = +prompt('b?','0')
 
-console.log(new A() == new B());
+}
+this.sum = function (){
+        return this.a + this.b
+}
+
+
+this.mul = function(){
+        return this.a * this.b
+}
+
+        }
+
+        let calculator = new Calculator();
+        calculator.read();
+
+        alert( "Sum=" + calculator.sum() );
+        alert( "Mul=" + calculator.mul() );
