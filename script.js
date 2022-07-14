@@ -1,16 +1,8 @@
+// Сумма пользовательских чисел
+// важность: 5
+// Создайте скрипт, который запрашивает ввод двух чисел (используйте prompt) и после показывает их сумму.
 
 
-                function Accumulator(startingValue){
-this.value = startingValue;
-this.read = function (){
-    this.a+=prompt('a?')
-    this.value+=this.a
-}
-                }
-
-                let accumulator = new Accumulator(1); // начальное значение 1
-
-                accumulator.read(); // прибавит ввод prompt к текущему значению
-                accumulator.read(); // прибавит ввод prompt к текущему значению
-
-                alert(accumulator.value); // выведет сумму этих значений
+    let number = +prompt('a','1')
+    let number2 = +prompt('b','2')
+const sum = alert(number + number2);
