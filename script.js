@@ -1,53 +1,18 @@
-// Это ladder (лестница) – объект, который позволяет подниматься вверх и спускаться:
+// Возможно ли создать функции A и B в примере ниже, где объекты равны new A()==new B()?
 //
-//     let ladder = {
-//         step: 0,
-//         up() {
-//             this.step++;
-//         },
-//         down() {
-//             this.step--;
-//         },
-//         showStep: function() { // показывает текущую ступеньку
-//             alert( this.step );
-//         }
-//     };
-// Теперь, если нам нужно сделать несколько последовательных вызовов, мы можем выполнить это так:
+//     function A() { ... }
+//     function B() { ... }
 //
-//     ladder.up();
-// ladder.up();
-// ladder.down();
-// ladder.showStep(); // 1
-// Измените код методов up, down и showStep таким образом, чтобы их вызов можно было сделать по цепочке, например так:
+// let a = new A;
+// let b = new B;
 //
-//     ladder.up().up().down().showStep(); // 1
-// Такой подход широко используется в библиотеках JavaScript.
+// alert( a == b ); // true
+// Если да – приведите пример вашего кода.
 
-// Решением является возврат самого объекта в каждом методе.
 
-    let ladder = {
-    step: 0,
-    up() {
-        this.step++;
-        return this;
-    },
-    down() {
-        this.step--;
-        return this;
-    },
-    showStep() {
-        alert( this.step );
-        return this;
-    }
-}
 
-ladder.up().up().down().up().down().showStep(); // 1
-// Мы также можем писать один вызов на одной строке. Для длинной цепи вызовов это более читабельно:
+let obj = {}
+function A(){return obj}
+function B(){return obj}
 
-    ladder
-        .up()
-        .up()
-        .down()
-        .up()
-        .down()
-        .showStep(); // 1
+console.log(new A() == new B());
