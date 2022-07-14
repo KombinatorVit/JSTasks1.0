@@ -1,30 +1,43 @@
-// Фильтрация уникальных элементов массива
-// важность: 5
-// Допустим, у нас есть массив arr.
+// Сумма свойств объекта
+// Есть объект salaries с произвольным количеством свойств, содержащих заработные платы.
 //
-//     Создайте функцию unique(arr), которая вернёт массив уникальных, не повторяющихся значений массива arr.
+//     Напишите функцию sumSalaries(salaries), которая возвращает сумму всех зарплат с помощью метода Object.values и цикла for..of.
 //
-//     Например:
+//     Если объект salaries пуст, то результат должен быть 0.
 //
-// function unique(arr) {
-//     /* ваш код */
-// }
+// Например:
 //
-// let values = ["Hare", "Krishna", "Hare", "Krishna",
-//     "Krishna", "Krishna", "Hare", "Hare", ":-O"
-// ];
+//     let salaries = {
+//         "John": 100,
+//         "Pete": 300,
+//         "Mary": 250
+//     };
 //
-// alert( unique(values) ); // Hare,Krishna,:-O
-// P.S. Здесь мы используем строки, но значения могут быть любого типа.
-//
-//     P.P.S. Используйте Set для хранения уникальных значений.
+// alert( sumSalaries(salaries) ); // 650
 
-function unique(arr) {
-    return Array.from(new Set(arr));
+function sumSalaries(salaries) {
+
+    let sum = 0;
+    for (let salary of Object.values(salaries)) {
+        sum += salary;
+    }
+
+    return sum; // 650
 }
 
-let values = ["Hare", "Krishna", "Hare", "Krishna",
-    "Krishna", "Krishna", "Hare", "Hare", ":-O"
-];
+let salaries = {
+    "John": 100,
+    "Pete": 300,
+    "Mary": 250
+};
 
-alert( unique(values) ); // Hare,Krishna,:-O
+alert( sumSalaries(salaries) ); // 650
+
+// Или, как вариант, мы можем получить сумму, используя методы Object.values и reduce:
+
+// reduce перебирает массив значений salaries,
+// складывает их
+// и возвращает результат
+    function sumSalaries(salaries) {
+        return Object.values(salaries).reduce((a, b) => a + b, 0) // 650
+    }
