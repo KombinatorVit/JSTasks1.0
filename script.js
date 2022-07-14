@@ -1,65 +1,22 @@
-// Подмассив наибольшей суммы
-// На входе массив чисел, например: arr = [1, -2, 3, 4, -9, 6].
+// Переведите текст вида border-left-width в borderLeftWidth
+// Напишите функцию camelize(str), которая преобразует строки вида «my-short-string» в «myShortString».
 //
-//     Задача: найти непрерывный подмассив в arr, сумма элементов в котором максимальна.
+// То есть дефисы удаляются, а все слова после них получают заглавную букву.
 //
-//     Функция getMaxSubSum(arr) должна возвращать эту сумму.
+//     Примеры:
 //
-//     Например:
+// camelize("background-color") == 'backgroundColor';
+// camelize("list-style-image") == 'listStyleImage';
+// camelize("-webkit-transition") == 'WebkitTransition';
+// P.S. Подсказка: используйте split, чтобы разбить строку на массив символов, потом переделайте всё как нужно и методом join соедините обратно.
 //
-// getMaxSubSum([-1, 2, 3, -9]) == 5 (сумма выделенных элементов)
-// getMaxSubSum([2, -1, 2, 3, -9]) == 6
-// getMaxSubSum([-1, 2, 3, -9, 11]) == 11
-// getMaxSubSum([-2, -1, 1, 2]) == 3
-// getMaxSubSum([100, -9, 2, -3, 5]) == 100
-// getMaxSubSum([1, 2, 3]) == 6 (берём все)
-// Если все элементы отрицательные – ничего не берём(подмассив пустой) и сумма равна «0»:
-//
-// getMaxSubSum([-1, -2, -3]) = 0
-// Попробуйте придумать быстрое решение: O(n2), а лучше за О(n) операций.
-
-// Медленное решение
-
-function getMaxSubSum(arr) {
-    let maxSum = 0; // если элементов не будет - возвращаем 0
-
-    for (let i = 0; i < arr.length; i++) {
-        let sumFixedStart = 0;
-        for (let j = i; j < arr.length; j++) {
-            sumFixedStart += arr[j];
-            maxSum = Math.max(maxSum, sumFixedStart);
-        }
-    }
-
-    return maxSum;
+function camelize(str) {
+    return str
+        .split('-') // разбивает 'my-long-word' на массив ['my', 'long', 'word']
+        .map(
+            // Переводит в верхний регистр первые буквы всех элементом массива за исключением первого
+            // превращает ['my', 'long', 'word'] в ['my', 'Long', 'Word']
+            (word, index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1)
+        )
+        .join(''); // соединяет ['my', 'Long', 'Word'] в 'myLongWord'
 }
-
-alert( getMaxSubSum([-1, 2, 3, -9]) ); // 5
-alert( getMaxSubSum([-1, 2, 3, -9, 11]) ); // 11
-alert( getMaxSubSum([-2, -1, 1, 2]) ); // 3
-alert( getMaxSubSum([1, 2, 3]) ); // 6
-alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
-
-
-// Быстрое решение
-
-
-function getMaxSubSum(arr) {
-    let maxSum = 0;
-    let partialSum = 0;
-
-    for (let item of arr) { // для каждого элемента массива
-        partialSum += item; // добавляем значение элемента к partialSum
-        maxSum = Math.max(maxSum, partialSum); // запоминаем максимум на данный момент
-        if (partialSum < 0) partialSum = 0; // ноль если отрицательное
-    }
-
-    return maxSum;
-}
-
-alert( getMaxSubSum([-1, 2, 3, -9]) ); // 5
-alert( getMaxSubSum([-1, 2, 3, -9, 11]) ); // 11
-alert( getMaxSubSum([-2, -1, 1, 2]) ); // 3
-alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
-alert( getMaxSubSum([1, 2, 3]) ); // 6
-alert( getMaxSubSum([-1, -2, -3]) ); // 0
