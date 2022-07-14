@@ -1,11 +1,14 @@
-// Напишите функцию ucFirst(str), возвращающую строку str с заглавным первым символом. Например:
+// Выделить число
+// важность: 4
+// Есть стоимость в виде строки "$120". То есть сначала идёт знак валюты, а затем – число.
 //
-// ucFirst("вася") == "Вася";
+//     Создайте функцию extractCurrencyValue(str), которая будет из такой строки выделять числовое значение и возвращать его.
+//
+//     Например:
+//
 
-function ucFirst(str){
-    return str[0].toUpperCase() +str.slice(1)
+function extractCurrencyValue(str){
+    return +str.slice(1)
 }
 
-console.log(ucFirst("вася"));
-console.log(ucFirst("маша"));
-console.log(ucFirst("дара"));
+alert( extractCurrencyValue('$120') === 120 ); // true
