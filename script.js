@@ -1,27 +1,3 @@
-// Создайте объект calculator (калькулятор) с тремя методами:
-//
-//     read() (читать) запрашивает два значения и сохраняет их как свойства объекта.
-// sum() (суммировать) возвращает сумму сохранённых значений.
-// mul() (умножить) перемножает сохранённые значения и возвращает результат.
-//
-//
-
-
-let calculator = {
-     read() {
-          this.a = +prompt('add?', 0);
-          this.b = +prompt('bddd?', 0);
-     },
-sum(){
-     return this.a + this.b;
-
-},
-mul(){
-     return this.a * this.b;
-
-}
-};
-
-calculator.read();
-alert( calculator.sum() );
-alert( calculator.mul() );
+// Only change code below this line
+const increment = (number= 1, value=1) => number + value;
+// Only change code above this line
