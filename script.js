@@ -1,56 +1,26 @@
-// Создать расширяемый калькулятор
+// Трансформировать в массив имён
 // важность: 5
-// Создайте функцию конструктор Calculator, которая создаёт «расширяемые» объекты калькулятора.
+// У вас есть массив объектов user, и в каждом из них есть user.name. Напишите код, который преобразует их в массив имён.
 //
-//     Задание состоит из двух частей.
+//     Например:
 //
-//     Во-первых, реализуйте метод calculate(str), который принимает строку типа "1 + 2" в формате «ЧИСЛО оператор ЧИСЛО» (разделено пробелами) и возвращает результат. Метод должен понимать плюс + и минус -.
+// let vasya = { name: "Вася", age: 25 };
+// let petya = { name: "Петя", age: 30 };
+// let masha = { name: "Маша", age: 28 };
 //
-// Пример использования:
+// let users = [ vasya, petya, masha ];
 //
-//     let calc = new Calculator;
+// let names = /* ... ваш код */
 //
-// alert( calc.calculate("3 + 7") ); // 10
-// Затем добавьте метод addMethod(name, func), который добавляет в калькулятор новые операции. Он принимает оператор name и функцию с двумя аргументами func(a,b), которая описывает его.
-//
-//     Например, давайте добавим умножение *, деление / и возведение в степень **:
-//
-// let powerCalc = new Calculator;
-// powerCalc.addMethod("*", (a, b) => a * b);
-// powerCalc.addMethod("/", (a, b) => a / b);
-// powerCalc.addMethod("**", (a, b) => a ** b);
-//
-// let result = powerCalc.calculate("2 ** 3");
-// alert( result ); // 8
-// Для этой задачи не нужны скобки или сложные выражения.
-//     Числа и оператор разделены ровно одним пробелом.
-//     Не лишним будет добавить обработку ошибок.
+//     alert( names ); // Вася, Петя, Маша
 
-//
-// Обратите внимание, как хранятся методы. Они просто добавляются к внутреннему объекту.
-//     Все тесты и числовые преобразования выполняются в методе calculate. В будущем он может быть расширен для поддержки более сложных выражений.
-    function Calculator() {
 
-    this.methods = {
-        "-": (a, b) => a - b,
-        "+": (a, b) => a + b
-    };
+let vasya = { name: "Вася", age: 25 };
+let petya = { name: "Петя", age: 30 };
+let masha = { name: "Маша", age: 28 };
 
-    this.calculate = function(str) {
+let users = [ vasya, petya, masha ];
 
-        let split = str.split(' '),
-            a = +split[0],
-            op = split[1],
-            b = +split[2]
+let names = users.map(item => item.name);
 
-        if (!this.methods[op] || isNaN(a) || isNaN(b)) {
-            return NaN;
-        }
-
-        return this.methods[op](a, b);
-    }
-
-    this.addMethod = function(name, func) {
-        this.methods[name] = func;
-    };
-}
+alert( names ); // Вася, Петя, Маша
