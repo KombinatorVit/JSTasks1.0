@@ -1,7 +1,11 @@
-let str = "Ослик Иа-Иа посмотрел на Иа-Иа виадук Иа-Иа";
-let target = "Иа";
+// Напишите функцию ucFirst(str), возвращающую строку str с заглавным первым символом. Например:
+//
+// ucFirst("вася") == "Вася";
 
-let pos = -1;
-while ((pos = str.indexOf(target, pos + 1)) != -1) {
-    console.log( pos );
+function ucFirst(str){
+    return str[0].toUpperCase() +str.slice(1)
 }
+
+console.log(ucFirst("вася"));
+console.log(ucFirst("маша"));
+console.log(ucFirst("дара"));
