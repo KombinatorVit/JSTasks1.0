@@ -1,18 +1,36 @@
-// Преобразуйте объект в JSON, а затем обратно в обычный объект
-// Преобразуйте user в JSON, затем прочитайте этот JSON в другую переменную.
+// Исключить обратные ссылки
+// важность: 5
+// В простых случаях циклических ссылок мы можем исключить свойство, из-за которого они возникают, из сериализации по его имени.
+//
+//     Но иногда мы не можем использовать имя, так как могут быть и другие, нужные, свойства с этим именем во вложенных объектах. Поэтому можно проверять свойство по значению.
+//
+//     Напишите функцию replacer для JSON-преобразования, которая удалит свойства, ссылающиеся на meetup:
 
-
-
-
-    let user = {
-    name: "Василий Иванович",
-    age: 35
+let room = {
+    number: 23
 };
 
+let meetup = {
+    title: "Совещание",
+    occupiedBy: [{name: "Иванов"}, {name: "Петров"}],
+    place: room
+};
 
-let json = JSON.stringify(user);
-console.log(json)
-let obj = JSON.parse(json);
-console.log(obj)
+// цикличные ссылки
+room.occupiedBy = meetup;
+meetup.self = meetup;
 
-//let user2 = JSON.parse(JSON.stringify(user)); как вариант
+alert( JSON.stringify(meetup, function replacer(key, value) {
+    return (key != "" && value == meetup) ? undefined : value;
+
+}));
+
+/* в результате должно быть:
+{
+  "title":"Совещание",
+  "occupiedBy":[{"name":"Иванов"},{"name":"Петров"}],
+  "place":{"number":23}
+}
+
+//Здесь нам также нужно проверить key =="", чтобы исключить первый вызов, где значение value равно meetup.
+ */
