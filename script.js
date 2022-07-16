@@ -1,41 +1,10 @@
-// Создать уведомление
+// Найти размер прокрутки снизу
 // важность: 5
-// Напишите функцию showNotification(options), которая создаёт уведомление: <div class="notification"> с заданным содержимым. Уведомление должно автоматически исчезнуть через 1,5 секунды.
+// Свойство elem.scrollTop содержит размер прокрученной области при отсчёте сверху. А как подсчитать размер прокрутки снизу (назовём его scrollBottom)?
 //
-//     Пример объекта options:
+//     Напишите соответствующее выражение для произвольного элемента elem.
 //
-//     // показывает элемент с текстом "Hello" рядом с правой верхней частью окна.
-//     showNotification({
-//         top: 10, // 10px от верхней границы окна (по умолчанию 0px)
-//         right: 10, // 10px от правого края окна (по умолчанию 0px)
-//         html: "Hello!", // HTML-уведомление
-//         className: "welcome" // дополнительный класс для div (необязательно)
-//     });
+//     P.S. Проверьте: если прокрутки нет вообще или элемент полностью прокручен – оно должно давать 0.
 
-function showNotification({top = 0, right = 0, className, html}) {
-
-    let notification = document.createElement('div');
-    notification.className = "notification";
-    if (className) {
-        notification.classList.add(className);
-    }
-
-    notification.style.top = top + 'px';
-    notification.style.right = right + 'px';
-
-    notification.innerHTML = html;
-    document.body.append(notification);
-
-    setTimeout(() => notification.remove(), 1500);
-}
-
-// test it
-let i = 1;
-setInterval(() => {
-    showNotification({
-        top: 10,
-        right: 10,
-        html: 'Hello ' + i++,
-        className: "welcome"
-    });
-}, 2000);
+let scrollBottom = elem.scrollHeight - elem.scrollTop - elem.clientHeight;
+// Другими словами: (вся высота) минус (часть, прокрученная сверху) минус (видимая часть) – результат в точности соответствует размеру прокрутки снизу.
