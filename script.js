@@ -1,18 +1,10 @@
-// Выведите список потомков в дереве
+// Вставьте HTML в список
 // важность: 5
-// Есть дерево, организованное в виде вложенных списков ul/li.
+// Напишите код для вставки <li>2</li><li>3</li> между этими двумя <li>:
 //
-//     Напишите код, который добавит каждому элементу списка <li> количество вложенных в него элементов. Узлы нижнего уровня, без детей – пропускайте.
-//
-//     Результат:
+<ul id="ul">
+    <li id="one">1</li>
+    <li id="two">4</li>
+</ul>
 
-let lis = document.getElementsByTagName('li');
-
-for (let li of lis) {
-    // получить количество всех <li> ниже этого <li>
-    let descendantsCount = li.getElementsByTagName('li').length;
-    if (!descendantsCount) continue;
-
-    // добавить непосредственно к текстовому узлу (добавить к тексту)
-    li.firstChild.data += ' [' + descendantsCount + ']';
-}
+one.insertAdjacentHTML('afterend', '<li>2</li><li>3</li>');
