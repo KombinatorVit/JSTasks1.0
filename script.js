@@ -1,22 +1,26 @@
-// getElementByIdСчитаем потомков
+// Получите атрибут
 // важность: 5
-// У нас есть дерево, структурированное как вложенные списки ul/li.
+// Напишите код для выбора элемента с атрибутом data-widget-name из документа и прочитайте его значение.
 //
-//     Напишите код, который выведет каждый элемент списка <li>:
+// <!DOCTYPE html>
+// <html>
+// <body>
 //
-// Какой в нём текст (без поддерева) ?
-//     Какое число потомков – всех вложенных <li> (включая глубоко вложенные) ?
+// <div data-widget-name="menu">Choose the genre</div>
+//
+// <script>
+//     /* your code */
+// </script>
+// </body>
+// </html>
 
-// Пройдём циклом по всем элементам <li>:
+<
 
-// for (let li of document.querySelectorAll('li')) {
-// ...
-// }
-// В цикле нам нужно получить текст в каждом элементе li. Мы можем прочитать текстовое содержимое элемента списка из первого дочернего узла li, который будет текстовым узлом:
 
-    for (let li of document.querySelectorAll('li')) {
-        let title = li.firstChild.data;
+    // получаем элемент
+    let elem = document.querySelector('[data-widget-name]');
 
-        // переменная title содержит текст элемента <li>
-    }
-// Так мы сможем получить количество потомков как li.getElementsByTagName('li').length.
+    // читаем значение
+    alert(elem.dataset.widgetName);
+    // или так
+    alert(elem.getAttribute('data-widget-name'));
