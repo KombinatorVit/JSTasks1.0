@@ -1,36 +1,75 @@
-// Исключить обратные ссылки
+// Выделите ячейки по диагонали
 // важность: 5
-// В простых случаях циклических ссылок мы можем исключить свойство, из-за которого они возникают, из сериализации по его имени.
+// Напишите код, который выделит красным цветом все ячейки в таблице по диагонали.
 //
-//     Но иногда мы не можем использовать имя, так как могут быть и другие, нужные, свойства с этим именем во вложенных объектах. Поэтому можно проверять свойство по значению.
+//     Вам нужно получить из таблицы <table> все диагональные <td> и выделить их, используя код:
 //
-//     Напишите функцию replacer для JSON-преобразования, которая удалит свойства, ссылающиеся на meetup:
+// //  в переменной td находится DOM-элемент для тега <td>
+//     td.style.backgroundColor = 'red';
+//
+//
+// Для получения доступа к диагональным ячейкам таблицы используем свойства rows и cells.
 
-let room = {
-    number: 23
-};
-
-let meetup = {
-    title: "Совещание",
-    occupiedBy: [{name: "Иванов"}, {name: "Петров"}],
-    place: room
-};
-
-// цикличные ссылки
-room.occupiedBy = meetup;
-meetup.self = meetup;
-
-alert( JSON.stringify(meetup, function replacer(key, value) {
-    return (key != "" && value == meetup) ? undefined : value;
-
-}));
-
-/* в результате должно быть:
-{
-  "title":"Совещание",
-  "occupiedBy":[{"name":"Иванов"},{"name":"Петров"}],
-  "place":{"number":23}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+    border-collapse: collapse;
 }
 
-//Здесь нам также нужно проверить key =="", чтобы исключить первый вызов, где значение value равно meetup.
- */
+td {
+    border: 1px solid black;
+    padding: 3px 5px;
+}
+</style>
+</head>
+
+<body>
+<table>
+    <tr>
+        <td>1:1</td>
+        <td>2:1</td>
+        <td>3:1</td>
+        <td>4:1</td>
+        <td>5:1</td>
+    </tr>
+    <tr>
+        <td>1:2</td>
+        <td>2:2</td>
+        <td>3:2</td>
+        <td>4:2</td>
+        <td>5:2</td>
+    </tr>
+    <tr>
+        <td>1:3</td>
+        <td>2:3</td>
+        <td>3:3</td>
+        <td>4:3</td>
+        <td>5:3</td>
+    </tr>
+    <tr>
+        <td>1:4</td>
+        <td>2:4</td>
+        <td>3:4</td>
+        <td>4:4</td>
+        <td>5:4</td>
+    </tr>
+    <tr>
+        <td>1:5</td>
+        <td>2:5</td>
+        <td>3:5</td>
+        <td>4:5</td>
+        <td>5:5</td>
+    </tr>
+</table>
+<script>
+    let table = document.body.firstElementChild;
+
+    for (let i = 0; i < table.rows.length; i++) {
+    let row = table.rows[i];
+    row.cells[i].style.backgroundColor = 'red';
+}
+</script>
+</body>
+</html>
