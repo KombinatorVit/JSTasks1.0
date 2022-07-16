@@ -1,37 +1,105 @@
-// Создайте список
-// важность: 4
-// Напишите интерфейс для создания списка.
+// Создайте дерево из объекта
+// важность: 5
+// Напишите функцию createTree, которая создаёт вложенный список ul/li из объекта.
 //
-//     Для каждого пункта:
+//     Например:
 //
-//     Запрашивайте содержимое пункта у пользователя с помощью prompt.
-//     Создавайте элемент <li> и добавляйте его к <ul>.
-// Продолжайте до тех пор, пока пользователь не отменит ввод (нажатием клавиши Esc или введя пустую строку).
-// Все элементы должны создаваться динамически.
+// let data = {
+//     "Рыбы": {
+//         "форель": {},
+//         "лосось": {}
+//     },
 //
-//     Если пользователь вводит HTML-теги, они должны обрабатываться как текст.
+//     "Деревья": {
+//         "Огромные": {
+//             "секвойя": {},
+//             "дуб": {}
+//         },
+//         "Цветковые": {
+//             "яблоня": {},
+//             "магнолия": {}
+//         }
+//     }
+// };
+// Синтаксис:
+//
+//     let container = document.getElementById('container');
+// createTree(container, data); // создаёт дерево в контейнере
 
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <body>
-<h1>Создать список</h1>
+
+<div id="container"></div>
 
 <script>
-    let ul = document.createElement('ul');
-    document.body.append(ul);
+    let data = {
+    "Рыбы": {
+    "форель": {},
+    "лосось": {}
+},
 
-    while (true) {
-    let data = prompt("Введите текст для элемента списка", "");
+    "Деревья": {
+    "Огромные": {
+    "секвойя": {},
+    "дуб": {}
+},
+    "Цветковые": {
+    "яблоня": {},
+    "магнолия": {}
+}
+}
+};
 
-    if (!data) {
-    break;
+    function createTree(container, obj) {
+    container.innerHTML = createTreeText(obj);
 }
 
-    let li = document.createElement('li');
-    li.textContent = data;
-    ul.append(li);
+    function createTreeText(obj) { // отдельная рекурсивная функция
+    let li = '';
+    let ul;
+    for (let key in obj) {
+    li += '<li>' + key + createTreeText(obj[key]) + '</li>';
 }
+    if (li) {
+    ul = '<ul>' + li + '</ul>'
+}
+    return ul || '';
+}
+
+    createTree(container, data);
 </script>
-
 </body>
 </html>
+
+
+//////////////////////////////////
+
+function createTree(container, obj) {
+    container.append(createTreeDom(obj));
+}
+
+function createTreeDom(obj) {
+    // если нет дочерних элементов, то вызов возвращает undefined
+    // и элемент <ul> не будет создан
+    if (!Object.keys(obj).length) return;
+
+    let ul = document.createElement('ul');
+
+    for (let key in obj) {
+        let li = document.createElement('li');
+        li.innerHTML = key;
+
+        let childrenUl = createTreeDom(obj[key]);
+        if (childrenUl) {
+            li.append(childrenUl);
+        }
+
+        ul.append(li);
+    }
+
+    return ul;
+}
+
+let container = document.getElementById('container');
+createTree(container, data);
