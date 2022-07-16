@@ -1,75 +1,22 @@
-// Выделите ячейки по диагонали
+// getElementByIdСчитаем потомков
 // важность: 5
-// Напишите код, который выделит красным цветом все ячейки в таблице по диагонали.
+// У нас есть дерево, структурированное как вложенные списки ul/li.
 //
-//     Вам нужно получить из таблицы <table> все диагональные <td> и выделить их, используя код:
+//     Напишите код, который выведет каждый элемент списка <li>:
 //
-// //  в переменной td находится DOM-элемент для тега <td>
-//     td.style.backgroundColor = 'red';
-//
-//
-// Для получения доступа к диагональным ячейкам таблицы используем свойства rows и cells.
+// Какой в нём текст (без поддерева) ?
+//     Какое число потомков – всех вложенных <li> (включая глубоко вложенные) ?
 
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-table {
-    border-collapse: collapse;
-}
+// Пройдём циклом по всем элементам <li>:
 
-td {
-    border: 1px solid black;
-    padding: 3px 5px;
-}
-</style>
-</head>
+// for (let li of document.querySelectorAll('li')) {
+// ...
+// }
+// В цикле нам нужно получить текст в каждом элементе li. Мы можем прочитать текстовое содержимое элемента списка из первого дочернего узла li, который будет текстовым узлом:
 
-<body>
-<table>
-    <tr>
-        <td>1:1</td>
-        <td>2:1</td>
-        <td>3:1</td>
-        <td>4:1</td>
-        <td>5:1</td>
-    </tr>
-    <tr>
-        <td>1:2</td>
-        <td>2:2</td>
-        <td>3:2</td>
-        <td>4:2</td>
-        <td>5:2</td>
-    </tr>
-    <tr>
-        <td>1:3</td>
-        <td>2:3</td>
-        <td>3:3</td>
-        <td>4:3</td>
-        <td>5:3</td>
-    </tr>
-    <tr>
-        <td>1:4</td>
-        <td>2:4</td>
-        <td>3:4</td>
-        <td>4:4</td>
-        <td>5:4</td>
-    </tr>
-    <tr>
-        <td>1:5</td>
-        <td>2:5</td>
-        <td>3:5</td>
-        <td>4:5</td>
-        <td>5:5</td>
-    </tr>
-</table>
-<script>
-    let table = document.body.firstElementChild;
+    for (let li of document.querySelectorAll('li')) {
+        let title = li.firstChild.data;
 
-    for (let i = 0; i < table.rows.length; i++) {
-    let row = table.rows[i];
-    row.cells[i].style.backgroundColor = 'red';
-}
-</script>
-</body>
-</html>
+        // переменная title содержит текст элемента <li>
+    }
+// Так мы сможем получить количество потомков как li.getElementsByTagName('li').length.
