@@ -1,15 +1,5 @@
-// Скрыть элемент по нажатию кнопки
+// Спрятать себя
 // важность: 5
-// Добавьте JavaScript к кнопке button, чтобы при нажатии элемент <div id="text"> исчезал.
-//
-//     Демо:
+// Создайте кнопку, которая будет скрывать себя по нажатию.
 
-<input type="button" id="hider" value="Нажмите, чтобы спрятать текст" />
-
-<div id="text">Текст</div>
-
-    // Здесь не важно, как мы скрываем текст.
-    // Также можно использовать style.display:
-    document.getElementById('hider').onclick = function() {
-    document.getElementById('text').hidden = true;
-}
+<input type="button" onClick="this.hidden=true" value="Нажми, чтобы спрятать">
