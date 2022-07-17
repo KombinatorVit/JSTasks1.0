@@ -1,5 +1,12 @@
-// Спрятать себя
-// важность: 5
-// Создайте кнопку, которая будет скрывать себя по нажатию.
+Счётчик: <input type="button" value="1" data-counter>
+    Ещё счётчик: <input type="button" value="2" data-counter>
 
-<input type="button" onClick="this.hidden=true" value="Нажми, чтобы спрятать">
+    <script>
+        document.addEventListener('click', function(event) {
+
+        if (event.target.dataset.counter != undefined) { // если есть атрибут...
+        event.target.value++;
+    }
+
+    });
+    </script>
