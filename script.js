@@ -1,12 +1,46 @@
-Счётчик: <input type="button" value="1" data-counter>
-    Ещё счётчик: <input type="button" value="2" data-counter>
+// Спрячьте сообщения с помощью делегирования
+// важность: 5
+// Дан список сообщений с кнопками для удаления [x]. Заставьте кнопки работать.
+//
+//     В результате должно работать вот так:
 
-    <script>
-        document.addEventListener('click', function(event) {
+<!DOCTYPE HTML>
+<html>
 
-        if (event.target.dataset.counter != undefined) { // если есть атрибут...
-        event.target.value++;
-    }
+<head>
+<link rel="stylesheet" href="messages.css">
+    <meta charset="utf-8">
+    </head>
 
-    });
-    </script>
+<body>
+
+<div id="container">
+    <div class="pane">
+        <h3>Лошадь</h3>
+        <p>Домашняя лошадь - животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид дикой лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</p>
+        <button class="remove-button">[x]</button>
+    </div>
+    <div class="pane">
+        <h3>Осёл</h3>
+        <p>Домашний осёл или ишак — одомашненный подвид дикого осла, сыгравший важную историческую роль в развитии хозяйства и культуры человека. Все одомашненные ослы относятся к африканским ослам.</p>
+        <button class="remove-button">[x]</button>
+    </div>
+    <div class="pane">
+        <h3>Кошка</h3>
+        <p>Кошка, или домашняя кошка (лат. Félis silvéstris cátus), — домашнее животное, одно из наиболее популярных (наряду с собакой) "животных-компаньонов". С точки зрения научной систематики, домашняя кошка — млекопитающее семейства кошачьих отряда хищных. Ранее домашнюю кошку нередко рассматривали как отдельный биологический вид.
+        </p>
+        <button class="remove-button">[x]</button>
+    </div>
+</div>
+
+<script>
+    container.onclick = function(event) {
+    if (event.target.className != 'remove-button') return;
+
+    let pane = event.target.closest('.pane');
+    pane.remove();
+};
+</script>
+
+</body>
+</html>
