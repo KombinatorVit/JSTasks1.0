@@ -1,13 +1,18 @@
-function rangeOfNumbers(startNum, endNum) {
-
-
-    if(endNum - startNum === 0){
-        return [startNum];
-    } else {
-        var numbers = rangeOfNumbers(startNum, endNum - 1);
-        console.log(numbers);
-        numbers.push(endNum);
-        return numbers;
-    }
-    return [];
+const result = {
+    success: ["max-length", "no-amd", "prefer-arrow-functions"],
+    failure: ["no-var", "var-on-top", "linebreak"],
+    skipped: ["no-extra-semi", "no-dup-keys"]
 };
+function makeList(arr) {
+    // Only change code below this line
+
+    const failureItems = [];
+    for (let element of arr) {
+        failureItems.push(`<li class="text-warning">${element}</li>`);
+    }
+
+    // Only change code above this line
+    return failureItems;
+}
+
+const failuresList = makeList(result.failure);
